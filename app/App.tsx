@@ -5,9 +5,32 @@ import Output from "./Output";
 import { generateGrammar, Operator, parseAndParenthesize } from "@src/index";
 import { Grammar } from "ohm-js";
 
+import "./styles/App.scss";
+
 function App() {
-	const [operators, setOperators] = useState<Operator[]>([]);
-	const [inputCode, setInputCode] = useState("");
+	const [operators, setOperators] = useState<Operator[]>([{
+        symbol: "+",
+        precedence: 1,
+        associativity: "left",
+    },{
+        symbol: "-",
+        precedence: 1,
+        associativity: "left",
+    },{
+        symbol: "*",
+        precedence: 2,
+        associativity: "left",
+    },{
+        symbol: "/",
+        precedence: 2,
+        associativity: "left",
+    },{
+        symbol: "**",
+        precedence: 3,
+        associativity: "right",
+    }
+    ]);
+	const [inputCode, setInputCode] = useState("1 + 1 * 4 ** 2");
 	const [outputCode, setOutputCode] = useState("");
 	const [grammar, setGrammar] = useState<Grammar | undefined>(undefined);
 	const [grammarText, setGrammarText] = useState<string>("");
@@ -49,7 +72,7 @@ function App() {
 			/>
 			<CodeInput code={inputCode} onCodeChange={handleCodeChange} />
 
-			<h2>Grammar</h2>
+			<h2>Ohm.js Grammar</h2>
 			<pre>{grammarText}</pre>
 
 			<Output outputCode={outputCode} />
