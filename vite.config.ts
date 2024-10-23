@@ -11,7 +11,7 @@ export default defineConfig({
 			include: ["app/**/*.{css,scss}"],
 		}),
 	],
-	base: "/parse/",
+	base: "/PrecedenceParse/",
 	worker: {
 		format: "es",
 	},
